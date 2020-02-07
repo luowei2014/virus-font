@@ -1,5 +1,12 @@
 <template>
 	<div class="hello" >
+		<h1>实时疫情数据</h1>
+		<table style="border: 1px solid silver;padding: 10px;width: 100%;">
+			<tr class="head-tr">
+				<th class="head-th" v-for="item in headList" v-bind:key="item">{{item}}</th>
+			</tr>
+			<tr>暂无数据</tr>
+		</table>
 		<h2>热门迁入城市：</h2>
 		<table style="border: 1px solid silver;padding: 10px;width: 100%;">
 			<tr class="head-tr">
@@ -27,12 +34,7 @@
 				<th v-else>{{item.value}}</th>
 			</tr>
 		</table>
-		<table style="border: 1px solid silver;padding: 10px;width: 100%;">
-			<tr class="head-tr">
-				<th class="head-th" v-for="item in headList" v-bind:key="item">{{item}}</th>
-			</tr>
-			<tr>暂无数据</tr>
-		</table>
+		
 	</div>
 </template>
 
@@ -54,7 +56,7 @@ export default {
 			//获取迁出城市数据
 			this.$http({
 				method: 'post',
-				url: 'virus/in/list?size=200',
+				url: 'virus/in/list?size=200&sort=desc&colum=value',
 				headers: {
 					'Content-type': 'application/x-www-form-urlencoded'
 				},
@@ -78,7 +80,7 @@ export default {
 				//获取迁出城市数据
 				this.$http({
 					method: 'post',
-					url: 'virus/out/list?size=200',
+					url: 'virus/out/list?size=200&sort=desc&colum=value',
 					headers: {
 						'Content-type': 'application/x-www-form-urlencoded'
 					},
